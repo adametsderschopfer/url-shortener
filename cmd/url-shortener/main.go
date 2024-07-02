@@ -1,13 +1,19 @@
 package url_shortener
 
+import (
+	"fmt"
+	"url-shortener/internal/config"
+)
+
 func main() {
-	// TODO: init config
+	cfg := config.MustLoad()
+	fmt.Println(cfg)
 
-	// TODO: init logger
+	// TODO: init logger: slog
 
-	// TODO: init storage
+	// TODO: init storage: sqlite3
 
-	// TODO: init router
+	// TODO: init router: chi, chi-render
 
 	// TODO: run server
 }
