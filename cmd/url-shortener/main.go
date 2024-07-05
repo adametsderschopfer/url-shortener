@@ -12,12 +12,6 @@ import (
 	"url-shortener/internal/storage/sqllite"
 )
 
-const (
-	envLocal = "local"
-	envDev   = "development"
-	envProd  = "production"
-)
-
 func main() {
 	cfg := config.MustLoad()
 
@@ -48,13 +42,13 @@ func setupLogger(env string) *slog.Logger {
 	var log *slog.Logger
 
 	switch env {
-	case envLocal:
+	case config.EnvLocal:
 		log = setupPrettySlog()
-	case envDev:
+	case config.EnvDev:
 		log = slog.New(
 			slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug}),
 		)
-	case envProd:
+	case config.EnvProd:
 		log = slog.New(
 			slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}),
 		)
